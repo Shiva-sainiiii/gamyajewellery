@@ -14,11 +14,13 @@ export default function RootLayout({ children }) {
           <Header />
           <main>{children}</main>
           <footer>
-            <div className="wrap">
-              <b className="logo">Gamya Jewellery</b>
-              <p>Sonipat, Haryana. Free insured shipping. 7 day returns on unworn pieces with tags. Exchange and buyback at the day’s gold rate.</p>
-              <p className="mut">Demo website. Payments, delivery and orders are simulated and no money is charged.</p>
+            <div className="wrap fcols">
+              <div><b className="logo">Gamya Jewellery</b><p>Sonipat, Haryana</p></div>
+              <div><h3>Shop</h3><a href="/shop?metal=gold">Gold</a><a href="/shop?metal=diamond">Diamond</a><a href="/shop?metal=silver">Silver</a><a href="/shop?occ=Bridal">Wedding</a></div>
+              <div><h3>Help</h3><p>Free insured shipping</p><p>7 day returns on unworn pieces with tags</p><p>Exchange and buyback at the day’s rate</p></div>
+              <div><h3>Visit</h3><a href={`https://wa.me/${WA}`}>Chat on WhatsApp</a><a href="/admin">Shop admin (demo)</a></div>
             </div>
+            <div className="wrap"><p className="mut fdemo">Demo website. Payments, delivery and orders are simulated and no money is charged.</p></div>
           </footer>
           <a className="wa" href={`https://wa.me/${WA}`}>WhatsApp</a>
         </Store>

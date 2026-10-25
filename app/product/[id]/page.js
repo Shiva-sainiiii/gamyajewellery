@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import Art from '../../../components/Art';
+import Pic from '../../../components/Pic';
 import Card from '../../../components/Card';
 import { useStore } from '../../../components/Store';
 import { PRODUCTS, price, inr, lab, rateOf, WA } from '../../../lib/data';
@@ -31,7 +31,7 @@ export default function Product() {
   return (
     <div className="wrap sec">
       <div className="pd">
-        <div className="art"><Art p={p} /></div>
+        <div className="art"><Pic p={p} /></div>
         <div>
           <h1 className="h1s">{p.name}</h1>
           <p className="mut">{lab(p)}, {p.w} g, {p.occ.toLowerCase()}</p>
