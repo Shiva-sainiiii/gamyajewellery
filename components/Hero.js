@@ -17,12 +17,16 @@ export default function Hero() {
   const x0 = useRef(null);
   const go = (n) => setI((n + SLIDES.length) % SLIDES.length);
   useEffect(() => {
+    const v = () => setHold(document.hidden); // pause only while the tab is in the background
+    document.addEventListener('visibilitychange', v); return () => document.removeEventListener('visibilitychange', v);
+  }, []);
+  useEffect(() => {
     if (hold) return;
-    const t = setTimeout(() => go(i + 1), 5200);
+    const t = setTimeout(() => go(i + 1), 4500);
     return () => clearTimeout(t);
   }, [i, hold]);
   return (
-    <section className="hero" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}
+    <section className="hero"
       onTouchStart={(e) => (x0.current = e.touches[0].clientX)}
       onTouchEnd={(e) => { if (x0.current == null) return; const d = e.changedTouches[0].clientX - x0.current; if (Math.abs(d) > 50) go(i + (d < 0 ? 1 : -1)); x0.current = null; }}>
       <div className="htrack" style={{ transform: `translateX(calc(var(--peek) - ${i} * (var(--sw) + var(--gap))))` }}>
@@ -44,7 +48,7 @@ export default function Hero() {
       </div>
       <button className="hnav l" onClick={() => go(i - 1)} aria-label="Previous"><Icon n="left" size={22} /></button>
       <button className="hnav r" onClick={() => go(i + 1)} aria-label="Next"><Icon n="chev" size={22} /></button>
-      <div className="hdots">{SLIDES.map((s, n) => <button key={s.k} className={n === i ? 'on' : ''} onClick={() => go(n)} aria-label={`Slide ${n + 1}`}><span style={n === i && !hold ? { animation: 'fill 5.2s linear forwards' } : undefined} /></button>)}</div>
+      <div className="hdots">{SLIDES.map((s, n) => <button key={s.k} className={n === i ? 'on' : ''} onClick={() => go(n)} aria-label={`Slide ${n + 1}`}><span style={n === i && !hold ? { animation: 'fill 4.5s linear forwards' } : undefined} /></button>)}</div>
     </section>
   );
 }
